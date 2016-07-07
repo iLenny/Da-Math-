@@ -1,8 +1,9 @@
 package damath;
 
-import damath.interfaces.Updatable;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 /**
  * 
@@ -11,19 +12,19 @@ import javafx.util.Duration;
  *  It is abstract class because it is necessary in order to
  *  override the update method.
  */
-public abstract class Gameloop implements Updatable {
+public abstract class Gameloop extends Application {
 	private Timeline timeline;
-	
 	
 	/* ***************
 	 *   CONSTRUCTOR
 	 * ***************/
-	public Gameloop() {
+	protected Gameloop() {
 		timeline = new Timeline(new KeyFrame(Duration.millis(1), e->{
 			update();		
 		}));
 		timeline.setCycleCount(Timeline.INDEFINITE);
-	}	
+	}
+	
 		
 	// PLAY:
 	public void play() {
@@ -40,8 +41,9 @@ public abstract class Gameloop implements Updatable {
 		timeline.stop();
 	}
 	
-	// Abstract Method:
+	// Abstract Methods:
 	public abstract void update();
+	public abstract void start(Stage primaryStage);
 	
 	
 }

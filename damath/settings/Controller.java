@@ -10,9 +10,9 @@ import javafx.scene.input.KeyCode;
  * Controller class.
  * This class is a singleton;
  * The purpose of this class is to have access to keyboard controls and 
- * to be able to change controls at any time in case the user wishes to change key preferance.
- * One must call the linkControlsWith() method and pass a Player argument, in order to link the 
- * controls with player that is going to be playing. 
+ * to be able to change controls at any time in case the user wishes to change key preference.
+ * One must call the linkControlsWith() method and pass a Player argument in order to link the 
+ * controls with the player. 
  */
 public final class Controller {
 	// Default Keys:
@@ -33,6 +33,7 @@ public final class Controller {
 	 *   Private Constructor
 	 * **********************/
 	private Controller() {
+		// Initialize Control keys:
 		setMoveRightKey(MOVE_RIGHT_KEY);
 		setMoveLeftKey(MOVE_LEFT_KEY);
 		setJumpKey(JUMP_KEY);
@@ -94,10 +95,11 @@ public final class Controller {
 		final Character playerChar = (Character) player;
 		final Controller controller = Controller.getInstance();
 		
+		// GET Current Controls:
 		final KeyCode MOVE_RIGHT = controller.getMoveRightKey();
 		final KeyCode MOVE_LEFT = controller.getMoveLeftKey();
-		final KeyCode JUMP = controller.getJumpKey();
-		final KeyCode ATTACK = controller.getAttackKey();
+		//final KeyCode JUMP = controller.getJumpKey();
+		//final KeyCode ATTACK = controller.getAttackKey();
 		
 		playerChar.setOnKeyPressed(e->{
 			// MOVE_RIGHT_KEY
