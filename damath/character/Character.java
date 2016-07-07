@@ -8,7 +8,9 @@ import javafx.scene.layout.Pane;
 /**
  * 
  * @author Leibniz H. Berihuete
- * 
+ * The Character abstract class will be used as a way to create characters such
+ * as Enemies, or Players. The subclass must specify whether it is an enemy or a player
+ * by implementing the corresponding interface.
  *
  */
 public abstract class Character extends Pane implements Updatable {

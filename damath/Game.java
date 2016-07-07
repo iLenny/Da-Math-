@@ -1,6 +1,5 @@
 package damath;
 
-import damath.character.Bob;
 import damath.settings.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
