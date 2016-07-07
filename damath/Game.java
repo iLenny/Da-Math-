@@ -1,6 +1,5 @@
 package damath;
 
-
 import javafx.stage.Stage;
 
 /**
