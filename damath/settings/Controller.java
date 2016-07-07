@@ -8,8 +8,11 @@ import javafx.scene.input.KeyCode;
  * 
  * @author Leibniz H. Berihuete
  * Controller class.
- * This class is a singleton 
- *
+ * This class is a singleton;
+ * The purpose of this class is to have access to keyboard controls and 
+ * to be able to change controls at any time in case the user wishes to change key preferance.
+ * One must call the linkControlsWith() method and pass a Player argument, in order to link the 
+ * controls with player that is going to be playing. 
  */
 public final class Controller {
 	// Default Keys:
@@ -123,14 +126,5 @@ public final class Controller {
 				System.out.println("Key Released: MOVE_LEFT" );
 			}
 		});
-	}
-	
-	
-	/* **************************
-	 *      Handle Input
-	 * **************************/
-	public void handleInput(Player player) {
-		
-				
 	}
 }
