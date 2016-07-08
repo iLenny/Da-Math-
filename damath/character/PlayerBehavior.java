@@ -36,13 +36,13 @@ public class PlayerBehavior implements Behavior {
 			// IF PLAYER PRESS THE 'MOVE_RIGHT_KEY':
 			if(player.getMoveKeyPressed().equals(moveRightKey) && playerChar.getAllowToMove()) {
 				playerChar.setTranslateX(playerChar.getTranslateX() + playerChar.getSpeed()/Game.FPS);
-				player.handleSprite();
+				playerChar.handleSprite();
 			}
 			
 			// ELSE IF PLAYER PRESS THE 'MOVE_LEFT_KEY':
 			else if(player.getMoveKeyPressed().equals(moveLeftKey) && playerChar.getAllowToMove()) {
 				playerChar.setTranslateX(playerChar.getTranslateX() - playerChar.getSpeed()/Game.FPS);
-				player.handleSprite();
+				playerChar.handleSprite();
 			}
 		}			
 	}

@@ -21,6 +21,8 @@ public abstract class Character extends Pane implements Updatable {
 	protected double hp;
 	protected int level;
 	protected boolean allowToMove;
+	protected double leftScale = -1;
+	protected double rightScale = 1;
 	
 	{
 		characterView = new ImageView();
@@ -121,6 +123,15 @@ public abstract class Character extends Pane implements Updatable {
 		this.allowToMove = allowToMove;
 	}
 	
+	public void setRightScale(double rightScale) {
+		this.rightScale = rightScale;
+	}
+	
+	public void setLeftScale(double leftScale) {
+		this.leftScale = leftScale;
+	}
+	
+	
 	
 	/* ******************
 	 *     ACCESSORS
@@ -149,8 +160,18 @@ public abstract class Character extends Pane implements Updatable {
 		return allowToMove;
 	}
 	
+	public double getRightScale() {
+		return rightScale;
+	}
+	
+	public double getLeftScale() {
+		return leftScale;
+	}
+	
 	/* ********************
 	 *   ABSTRACT METHODS
 	 * ********************/
 	public abstract void update();
+	public abstract void handleSprite();
+	public abstract void resetPosition();
 }

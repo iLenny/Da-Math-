@@ -9,7 +9,6 @@ import javafx.scene.input.KeyCode;
  */
 public interface Player {
 	public void addBehaviour(Behavior behavior);
-	public void handleSprite();
 	public void setMoveKeyPressed(KeyCode moveKeyPressed);
 	public KeyCode getMoveKeyPressed();
 

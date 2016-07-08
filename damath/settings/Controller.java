@@ -105,12 +105,14 @@ public final class Controller {
 			// MOVE_RIGHT_KEY
 			if(e.getCode().equals(MOVE_RIGHT)) {
 				player.setMoveKeyPressed(MOVE_RIGHT);
+				playerChar.setScaleX(playerChar.getRightScale());
 				System.out.println("Key Pressed: MOVE_RIGHT" );
 			}
 			
 			// MOVE_LEFT_KEY
 			else if(e.getCode().equals(MOVE_LEFT)) {
 				player.setMoveKeyPressed(MOVE_LEFT);
+				playerChar.setScaleX(playerChar.getLeftScale());
 				System.out.println("Key Pressed: MOVE_LEFT" );
 			}
 		});
@@ -119,12 +121,14 @@ public final class Controller {
 			// MOVE_RIGHT_KEY
 			if(e.getCode().equals(MOVE_RIGHT)) {
 				player.setMoveKeyPressed(null);
+				playerChar.resetPosition();
 				System.out.println("Key Released: MOVE_RIGHT" );
 			}
 			
 			// MOVE_LEFT_KEY
 			else if(e.getCode().equals(MOVE_LEFT)) {
 				player.setMoveKeyPressed(null);
+				playerChar.resetPosition();
 				System.out.println("Key Released: MOVE_LEFT" );
 			}
 		});
