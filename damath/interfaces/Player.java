@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 public interface Player {
 	public void addBehaviour(Behavior behavior);
 	public void setMoveKeyPressed(KeyCode moveKeyPressed);
+	public void setJumpKeyPressed(KeyCode jumpKeyPressed);
 	public KeyCode getMoveKeyPressed();
+	public KeyCode getJumpKeyPressed();
 
 }

@@ -29,9 +29,10 @@ public class Game extends Gameloop {
 		
 		// Player:
 		zipangu = new Zipangu();
-		zipangu.relocate(0, 473);
+		
 		
 		townMap = new Town(zipangu);
+
 		
 		// Give the player controls:
 		Controller.getInstance().linkControlsWith(zipangu);
@@ -55,7 +56,7 @@ public class Game extends Gameloop {
 	
 	
 	// MAIN
-	public static void main(String [] args) {
+	public static void main(String [] args) throws Exception{
 		launch(args);
 	}
 	

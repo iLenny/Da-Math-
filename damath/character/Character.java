@@ -1,9 +1,12 @@
 package damath.character;
 
 import damath.interfaces.Updatable;
+import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * 
@@ -21,11 +24,26 @@ public abstract class Character extends Pane implements Updatable {
 	protected double hp;
 	protected int level;
 	protected boolean allowToMove;
+	protected boolean allowToJump;
 	protected double leftScale = -1;
 	protected double rightScale = 1;
+	protected boolean falling = true;
+	
+	protected Rectangle head;
+	protected Rectangle body;
+	protected Rectangle feet;
+	
 	
 	{
 		characterView = new ImageView();
+		head = new Rectangle(20,20);
+		head.setFill(Color.BEIGE);
+		
+		body = new Rectangle(20, 20);
+		body.setFill(Color.BURLYWOOD);
+		
+		feet = new Rectangle(20, 10);
+		feet.setFill(Color.CORNFLOWERBLUE);
 	}
 	
 	/* *****************
@@ -41,9 +59,10 @@ public abstract class Character extends Pane implements Updatable {
 		setHP(100.0);
 		setLevel(1);
 		setAllowToMove(true);
+		setAllowToJump(false);
 		
 		characterView.setFocusTraversable(true);
-		this.getChildren().add(characterView);
+		this.getChildren().addAll(characterView, head, body, feet);
 		
 	}
 	
@@ -56,6 +75,7 @@ public abstract class Character extends Pane implements Updatable {
 		setHP(100.0);
 		setLevel(1);
 		setAllowToMove(true);
+		setAllowToJump(false);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -70,6 +90,7 @@ public abstract class Character extends Pane implements Updatable {
 		setHP(100.0);
 		setLevel(1);
 		setAllowToMove(true);
+		setAllowToJump(false);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -84,6 +105,7 @@ public abstract class Character extends Pane implements Updatable {
 		setHP(100.0);
 		setLevel(1);
 		setAllowToMove(true);
+		setAllowToJump(false);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -123,12 +145,20 @@ public abstract class Character extends Pane implements Updatable {
 		this.allowToMove = allowToMove;
 	}
 	
+	public void setAllowToJump(boolean allowToJump) {
+		this.allowToJump = allowToJump;
+	}
+	
 	public void setRightScale(double rightScale) {
 		this.rightScale = rightScale;
 	}
 	
 	public void setLeftScale(double leftScale) {
 		this.leftScale = leftScale;
+	}
+	
+	public void isFalling(boolean falling) {
+		this.falling = falling;
 	}
 	
 	
@@ -160,6 +190,10 @@ public abstract class Character extends Pane implements Updatable {
 		return allowToMove;
 	}
 	
+	public boolean getAllowToJump() {
+		return allowToJump;
+	}
+	
 	public double getRightScale() {
 		return rightScale;
 	}
@@ -167,6 +201,26 @@ public abstract class Character extends Pane implements Updatable {
 	public double getLeftScale() {
 		return leftScale;
 	}
+	
+	
+	public Bounds getHeadBounds() {
+		return (head.localToScene(head.getBoundsInLocal()));
+	}
+	
+	public Bounds getBodyBounds() {
+		return (body.localToScene(body.getBoundsInLocal()));
+	}
+	
+	public Bounds getFeetBounds() {
+		return (feet.localToScene(feet.getBoundsInLocal()));
+	}
+	
+	public boolean isFalling() {
+		return falling;
+	}
+	
+
+	
 	
 	/* ********************
 	 *   ABSTRACT METHODS

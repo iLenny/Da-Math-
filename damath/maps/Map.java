@@ -1,27 +1,36 @@
 package damath.maps;
 
+import java.util.ArrayList;
+
 import damath.character.Character;
 import damath.interfaces.Behavior;
+import damath.interfaces.CollisionObject;
 import damath.interfaces.Player;
 import damath.interfaces.Updatable;
+import damath.tools.CollisionBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public abstract class Map extends Pane implements Updatable{
-
+	public static final double DEFAULT_GRAVITY = 9.8;
+	
 	private ImageView backgroundView;
 	private ImageView mapView;
 	private Player player;
 	private Behavior behavior;
+	private double gravity;
+	private ArrayList<CollisionBox> collisionBoxList;
 	
 	/* ******************
 	 *   CONSTRUCTORS
 	 * ******************/
 	public Map(Player player) {
 		setPlayer(player);
+		setGravity(9.8);
 		backgroundView = new ImageView();
 		mapView = new ImageView();
+		collisionBoxList = new ArrayList<>();
 		
 		this.getChildren().addAll(backgroundView, mapView, (Character)player);
 	}
@@ -45,6 +54,10 @@ public abstract class Map extends Pane implements Updatable{
 		this.behavior = behavior;
 	}
 	
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
+	}
+	
 	/* ******************
 	 *     ACCESSORS
 	 * ******************/
@@ -64,7 +77,21 @@ public abstract class Map extends Pane implements Updatable{
 		return behavior;
 	}
 	
+	public double getGravity() {
+		return gravity;
+	}
+	
+	public ArrayList<CollisionBox> getCollisionBoxList() {
+		return collisionBoxList;
+	}
+	
+	
 	/* ********************
-	 * 	 ABSTRACT METHODS
+	 * 	 OTHER METHODS
 	 * ********************/
+	public void addCollisionObject(CollisionBox obj, double x, double y) {
+		obj.relocate(x, y);
+		collisionBoxList.add(obj);
+		this.getChildren().add(2,obj);
+	}
 }

@@ -27,7 +27,6 @@ public final class Controller {
 	private KeyCode moveLeftKey;
 	private KeyCode jumpKey;
 	private KeyCode attackKey;
-
 	
 	/* **********************
 	 *   Private Constructor
@@ -98,7 +97,7 @@ public final class Controller {
 		// GET Current Controls:
 		final KeyCode MOVE_RIGHT = controller.getMoveRightKey();
 		final KeyCode MOVE_LEFT = controller.getMoveLeftKey();
-		//final KeyCode JUMP = controller.getJumpKey();
+		final KeyCode JUMP = controller.getJumpKey();
 		//final KeyCode ATTACK = controller.getAttackKey();
 		
 		playerChar.setOnKeyPressed(e->{
@@ -106,14 +105,16 @@ public final class Controller {
 			if(e.getCode().equals(MOVE_RIGHT)) {
 				player.setMoveKeyPressed(MOVE_RIGHT);
 				playerChar.setScaleX(playerChar.getRightScale());
-				System.out.println("Key Pressed: MOVE_RIGHT" );
 			}
 			
 			// MOVE_LEFT_KEY
 			else if(e.getCode().equals(MOVE_LEFT)) {
 				player.setMoveKeyPressed(MOVE_LEFT);
 				playerChar.setScaleX(playerChar.getLeftScale());
-				System.out.println("Key Pressed: MOVE_LEFT" );
+			}
+			
+			if(e.getCode().equals(JUMP) && playerChar.getAllowToJump()) {
+				player.setJumpKeyPressed(JUMP);
 			}
 		});
 		
@@ -122,14 +123,16 @@ public final class Controller {
 			if(e.getCode().equals(MOVE_RIGHT)) {
 				player.setMoveKeyPressed(null);
 				playerChar.resetPosition();
-				System.out.println("Key Released: MOVE_RIGHT" );
 			}
 			
 			// MOVE_LEFT_KEY
 			else if(e.getCode().equals(MOVE_LEFT)) {
 				player.setMoveKeyPressed(null);
 				playerChar.resetPosition();
-				System.out.println("Key Released: MOVE_LEFT" );
+			}
+			
+			if(e.getCode().equals(JUMP)) {
+				player.setJumpKeyPressed(null);
 			}
 		});
 	}

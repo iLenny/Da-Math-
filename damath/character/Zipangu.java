@@ -2,11 +2,9 @@ package damath.character;
 
 import damath.interfaces.Behavior;
 import damath.interfaces.Player;
-import damath.settings.Controller;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import damath.Game;
 import damath.character.Character;
 import damath.character.PlayerBehavior;
 
@@ -16,8 +14,7 @@ import damath.character.PlayerBehavior;
  * This class was created to test the Character class
  */
 public class Zipangu extends Character implements Player{
-	private static final Image zipanguImg = 
-			new Image(Zipangu.class.getResourceAsStream("../images/zipangu.png"));
+	private Image zipanguImg;
 	private static final double SPRITE_WIDTH = 49;
 	private static final double SPRITE_HEIGHT = 73;
 	
@@ -35,17 +32,34 @@ public class Zipangu extends Character implements Player{
 	private int time = TIME_COUNT;
 	
 	private KeyCode moveKeyPressed;
+	private KeyCode jumpKeyPressed;
 	private Behavior behavior;
 	/* *****************
 	 *    CONSTRUCTOR
 	 * *****************/
 	public Zipangu () {
+		zipanguImg = 
+				new Image(Zipangu.class.getResourceAsStream("../images/zipangu.png"));
+		
 		rightScale = -1;
 		leftScale = 1;
 		setImage(zipanguImg);
 		characterView.setViewport(frames[0]);
 		PlayerBehavior pb = new PlayerBehavior(this);
 		addBehaviour(pb);
+		
+		
+		
+		head.setTranslateX(15);
+		head.setTranslateY(5);
+		body.setTranslateX(15);
+		body.setTranslateY(40);
+		feet.setTranslateX(15);
+		feet.setTranslateY(60);
+		
+		head.setVisible(false);
+		body.setVisible(false);
+		feet.setVisible(false);
 	}
 	
 	
@@ -93,6 +107,20 @@ public class Zipangu extends Character implements Player{
 	@Override
 	public void update() {
 		behavior.play();		
+	}
+
+
+	@Override
+	public KeyCode getJumpKeyPressed() {
+		// TODO Auto-generated method stub
+		return jumpKeyPressed;
+	}
+
+
+	@Override
+	public void setJumpKeyPressed(KeyCode jumpKeyPressed) {
+		this.jumpKeyPressed = jumpKeyPressed;
+		
 	}
 
 

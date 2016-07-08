@@ -1,10 +1,15 @@
 package damath.maps;
 
 import damath.interfaces.Behavior;
+import damath.interfaces.CollisionObject;
 import damath.interfaces.Player;
 import damath.settings.Controller;
+import damath.tools.CollisionBox;
 import javafx.geometry.Bounds;
 import javafx.scene.image.ImageView;
+
+import java.util.ArrayList;
+
 import damath.Game;
 import damath.character.Character;
 
@@ -18,18 +23,29 @@ public class MapBehavior implements Behavior {
 	private ImageView mapView;
 	private Character playerChar;
 	private Controller controller;
+	private ArrayList<CollisionBox> collisionBoxList;
+	
+	private double gravity;
 	
 	public MapBehavior(Map map) {
 		player = map.getPlayer();
 		playerChar = (Character)player;
 		backgroundView = map.getBackgroundView();
 		mapView = map.getMapView();
+		gravity = map.getGravity();
+		collisionBoxList = map.getCollisionBoxList();
 		controller = Controller.getInstance();
 		
 	}
 	
 	@Override
-	public void play() {		
+	public void play() {
+		// GRAVITY:
+		if(playerChar.isFalling()) {
+			playerChar.setTranslateY(playerChar.getTranslateY() + gravity/Game.FPS);
+		}
+		
+		
 		
 		// IF PLAYER IS MOVING RIGHT
 		if(player.getMoveKeyPressed() == controller.getMoveRightKey() && playerChar.getAllowToMove()) {
@@ -53,10 +69,15 @@ public class MapBehavior implements Behavior {
 		
 		switch(direction) {
 		case LEFT:
-			if(playerX > (Game.WINDOW_WIDTH * 0.70) && mapX >= -mapWidth) {
+			if(playerX > (Game.WINDOW_WIDTH * 0.70) && mapX >= -1*(mapWidth - Game.WINDOW_WIDTH*0.9)) {
 				playerChar.setTranslateX(playerChar.getTranslateX() - playerChar.getSpeed()/Game.FPS);
 				mapView.setTranslateX(mapView.getTranslateX() - playerChar.getSpeed()/Game.FPS);
-				backgroundView.setTranslateX(backgroundView.getTranslateX() - (playerChar.getSpeed()/Game.FPS) * 0.3);
+				backgroundView.setTranslateX(backgroundView.getTranslateX() - (playerChar.getSpeed()/Game.FPS) * 0.2);
+				
+				for(int i = 0; i < collisionBoxList.size(); i++) {
+					CollisionBox box = collisionBoxList.get(i);
+					box.setTranslateX(box.getTranslateX() - playerChar.getSpeed()/Game.FPS);
+				}
 			}
 			break;
 			
@@ -64,7 +85,12 @@ public class MapBehavior implements Behavior {
 			if(playerX < (Game.WINDOW_WIDTH * 0.30) && mapX <= 0) {
 				playerChar.setTranslateX(playerChar.getTranslateX() + playerChar.getSpeed()/Game.FPS);
 				mapView.setTranslateX(mapView.getTranslateX() + playerChar.getSpeed()/Game.FPS);
-				backgroundView.setTranslateX(backgroundView.getTranslateX() + (playerChar.getSpeed()/Game.FPS) * 0.3);
+				backgroundView.setTranslateX(backgroundView.getTranslateX() + (playerChar.getSpeed()/Game.FPS) * 0.2);
+				
+				for(int i = 0; i < collisionBoxList.size(); i++) {
+					CollisionBox box = collisionBoxList.get(i);
+					box.setTranslateX(box.getTranslateX() + playerChar.getSpeed()/Game.FPS);
+				}
 			}
 			break;
 		}
