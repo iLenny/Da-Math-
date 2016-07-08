@@ -1,4 +1,4 @@
-package damath.players;
+package damath.character;
 
 import damath.interfaces.Behavior;
 import damath.interfaces.Player;
@@ -10,6 +10,11 @@ import damath.Game;
 import damath.character.Character;
 import damath.character.PlayerBehavior;
 
+/**
+ * 
+ * @author Leibniz H. Berihuete
+ * This class was created to test the Character class
+ */
 public class Zipangu extends Character implements Player{
 	private static final Image zipanguImg = 
 			new Image(Zipangu.class.getResourceAsStream("../images/zipangu.png"));

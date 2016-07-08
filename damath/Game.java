@@ -1,6 +1,8 @@
 package damath;
 
-import damath.players.Zipangu;
+import damath.character.Zipangu;
+import damath.maps.Map;
+import damath.maps.Town;
 import damath.settings.Controller;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -20,19 +22,22 @@ public class Game extends Gameloop {
 	public static final double FPS = 1000/30;
 	
 	private Zipangu zipangu;
+	private Map townMap;
 
 	// START
 	@Override public void start(Stage primaryStage) {
 		
 		// Player:
 		zipangu = new Zipangu();
-		zipangu.relocate(0, 400);
+		zipangu.relocate(0, 473);
+		
+		townMap = new Town(zipangu);
 		
 		// Give the player controls:
 		Controller.getInstance().linkControlsWith(zipangu);
 		
 		// Add player to the root layout:
-		Pane root = new Pane(zipangu);
+		Pane root = new Pane(townMap);
 		
 		// Play gameloop
 		play();
@@ -45,7 +50,7 @@ public class Game extends Gameloop {
 	
 	// UPDATE
 	@Override public void update() {
-		zipangu.update();
+		townMap.update();
 	}
 	
 	
