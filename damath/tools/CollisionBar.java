@@ -59,7 +59,7 @@ public final class CollisionBar extends Rectangle implements CollisionObject {
 			break;
 			
 		case PUSH_DOWN:
-			playerChar.setTranslateY(playerChar.getTranslateY() + gravity/Game.FPS);
+			playerChar.setTranslateY(playerChar.getTranslateY() + playerChar.getJumpPower()/Game.FPS);
 			break;
 		}
 		

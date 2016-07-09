@@ -17,10 +17,12 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public abstract class Character extends Pane implements Updatable {
+	public static boolean once = true;
 	protected ImageView characterView;
 	protected String name;
 	protected double speed;
 	protected double attackPower;
+	protected double jumpPower;
 	protected double hp;
 	protected int level;
 	protected boolean allowToMove;
@@ -60,6 +62,7 @@ public abstract class Character extends Pane implements Updatable {
 		setLevel(1);
 		setAllowToMove(true);
 		setAllowToJump(false);
+		setJumpPower(10);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().addAll(characterView, head, body, feet);
@@ -72,10 +75,12 @@ public abstract class Character extends Pane implements Updatable {
 		setName("Unknown");
 		setSpeed(5.0);
 		setAttackPower(20.0);
+		setJumpPower(10);
 		setHP(100.0);
 		setLevel(1);
 		setAllowToMove(true);
 		setAllowToJump(false);
+		setJumpPower(10);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -91,6 +96,7 @@ public abstract class Character extends Pane implements Updatable {
 		setLevel(1);
 		setAllowToMove(true);
 		setAllowToJump(false);
+		setJumpPower(10);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -106,6 +112,7 @@ public abstract class Character extends Pane implements Updatable {
 		setLevel(1);
 		setAllowToMove(true);
 		setAllowToJump(false);
+		setJumpPower(10);
 		
 		characterView.setFocusTraversable(true);
 		this.getChildren().add(characterView);
@@ -159,6 +166,10 @@ public abstract class Character extends Pane implements Updatable {
 	
 	public void isFalling(boolean falling) {
 		this.falling = falling;
+	}
+	
+	public void setJumpPower(double jumpPower) {
+		this.jumpPower = jumpPower;
 	}
 	
 	
@@ -219,6 +230,10 @@ public abstract class Character extends Pane implements Updatable {
 		return falling;
 	}
 	
+	public double getJumpPower() {
+		return jumpPower;
+	}
+	
 
 	
 	
@@ -228,4 +243,5 @@ public abstract class Character extends Pane implements Updatable {
 	public abstract void update();
 	public abstract void handleSprite();
 	public abstract void resetPosition();
+	public abstract void jumpPosition();
 }

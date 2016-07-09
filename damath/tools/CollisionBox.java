@@ -91,6 +91,22 @@ public class CollisionBox extends Pane implements CollisionObject {
 		this.gravity = gravity;
 	}
 	
+	public CollisionBar getLeftBar() {
+		return leftBar;
+	}
+	
+	public CollisionBar getRightBar() {
+		return rightBar;
+	}
+	
+	public CollisionBar getUpBar() {
+		return upBar;
+	}
+	
+	public CollisionBar getDownBar() {
+		return downBar;
+	}
+	
 
 	@Override
 	public void buildCollisionWith(Character playerChar) {
@@ -113,14 +129,20 @@ public class CollisionBox extends Pane implements CollisionObject {
 		}
 		
 		// PLAYER HITS UP BAR
-		if(playerFeet.intersects(upBounds)) {
+		if(playerFeet.intersects(upBounds) && playerChar.isFalling()) {
 			upBar.buildCollisionWith(playerChar);
 			playerChar.setAllowToJump(true);
+			if(Character.once == true) {
+				Character.once = false;
+				playerChar.resetPosition();
+			}
+			
 		}
 		
 		// PLAYER HITS DOWN BAR
 		else if(playerHead.intersects(downBounds)){
-			upBar.buildCollisionWith(playerChar);
+			downBar.buildCollisionWith(playerChar);
+			
 		}
 	}
 }

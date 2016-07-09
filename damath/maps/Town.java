@@ -37,7 +37,28 @@ public class Town extends Map {
 		
 		addCollisionObject(floor, 0, 545);
 		
-		addCollisionObject(new CollisionBox(crateImg), 0, 500);
+		addCollisionObject(new CollisionBox(crateImg),100, 500);
+		addCollisionObject(new CollisionBox(crateImg),151, 500);
+		addCollisionObject(new CollisionBox(crateImg),151, 449);
+		addCollisionObject(new CollisionBox(crateImg),202, 500);
+		
+		CollisionBox box1 = new CollisionBox(crateImg);
+		CollisionBox box2 = new CollisionBox(crateImg);
+		box1.getUpBar().setPushDirection(CollisionObject.NONE);
+		box2.getUpBar().setPushDirection(CollisionObject.NONE);
+		
+		
+		addCollisionObject(new CollisionBox(crateImg),500, 500);
+		addCollisionObject(new CollisionBox(crateImg),551, 500);
+		addCollisionObject(new CollisionBox(crateImg),551, 449);
+		addCollisionObject(new CollisionBox(crateImg),602, 500);
+		addCollisionObject(new CollisionBox(crateImg),602, 449);
+		addCollisionObject(box1,653, 500);
+		addCollisionObject(box2,653, 449);
+		addCollisionObject(new CollisionBox(crateImg),653, 398);
+		addCollisionObject(new CollisionBox(crateImg),753, 398);
+	
+		
 	}
 
 	@Override

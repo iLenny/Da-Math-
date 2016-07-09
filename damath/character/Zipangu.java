@@ -27,6 +27,9 @@ public class Zipangu extends Character implements Player{
 			new Rectangle2D(265, 0, SPRITE_WIDTH, SPRITE_HEIGHT),
 	};
 	
+	private final Rectangle2D jumpFrame = 
+			new Rectangle2D(319, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
+	
 	private int frameCount = 0;
 	private final int TIME_COUNT = (int)(1000/(getSpeed()*1.2));
 	private int time = TIME_COUNT;
@@ -40,6 +43,7 @@ public class Zipangu extends Character implements Player{
 	public Zipangu () {
 		zipanguImg = 
 				new Image(Zipangu.class.getResourceAsStream("../images/zipangu.png"));
+		
 		
 		rightScale = -1;
 		leftScale = 1;
@@ -120,6 +124,13 @@ public class Zipangu extends Character implements Player{
 	@Override
 	public void setJumpKeyPressed(KeyCode jumpKeyPressed) {
 		this.jumpKeyPressed = jumpKeyPressed;
+		
+	}
+
+
+	@Override
+	public void jumpPosition() {
+		characterView.setViewport(jumpFrame);
 		
 	}
 
