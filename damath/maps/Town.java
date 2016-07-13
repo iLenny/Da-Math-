@@ -29,6 +29,9 @@ public class Town extends Map {
 		
 		setBackgroundView(bgImg);
 		setMapView(mapImg);
+		//getBackgroundView().setVisible(false);
+		//getMapView().setVisible(false);
+		
 		MapBehavior mb = new MapBehavior(this);
 		addBehavior(mb);		
 		floor = new CollisionBox(mapImg.getWidth(), 30);

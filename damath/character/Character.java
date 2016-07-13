@@ -39,13 +39,13 @@ public abstract class Character extends Pane implements Updatable {
 	{
 		characterView = new ImageView();
 		head = new Rectangle(20,20);
-		head.setFill(Color.BEIGE);
+		head.setFill(Color.RED);
 		
 		body = new Rectangle(20, 20);
-		body.setFill(Color.BURLYWOOD);
+		body.setFill(Color.VIOLET);
 		
 		feet = new Rectangle(20, 10);
-		feet.setFill(Color.CORNFLOWERBLUE);
+		feet.setFill(Color.AQUA);
 	}
 	
 	/* *****************

@@ -71,10 +71,10 @@ public class CollisionBox extends Pane implements CollisionObject {
 		upBar = new CollisionBar(PUSH_UP, width, shortHeight);
 		downBar = new CollisionBar(PUSH_DOWN, width, shortHeight);
 		
-		leftBar.setFill(Color.BLUEVIOLET);
-		rightBar.setFill(Color.BISQUE);
+		leftBar.setFill(Color.VIOLET);
+		rightBar.setFill(Color.VIOLET);
 		upBar.setFill(Color.AQUA);
-		downBar.setFill(Color.CRIMSON);
+		downBar.setFill(Color.RED);
 		
 		leftBar.setVisible(false);
 		rightBar.setVisible(false);
