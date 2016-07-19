@@ -1,8 +1,12 @@
 package damath.tools;
 
 import damath.interfaces.CollisionObject;
+import damath.interfaces.Enemy;
 import damath.maps.Map;
 import javafx.scene.shape.Rectangle;
+
+import java.util.ArrayList;
+
 import damath.Game;
 import damath.character.Character;
 
@@ -63,5 +67,15 @@ public final class CollisionBar extends Rectangle implements CollisionObject {
 			break;
 		}
 		
-	}	
+	}
+
+
+	@Override
+	public void buildEnemyCollision(ArrayList<Enemy> enemies) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

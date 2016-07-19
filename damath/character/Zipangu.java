@@ -48,6 +48,7 @@ public class Zipangu extends Character implements Player{
 		rightScale = -1;
 		leftScale = 1;
 		setImage(zipanguImg);
+		characterView.setFocusTraversable(true);
 		characterView.setViewport(frames[0]);
 		PlayerBehavior pb = new PlayerBehavior(this);
 		addBehaviour(pb);

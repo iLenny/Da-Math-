@@ -2,6 +2,7 @@ package damath.maps;
 
 import damath.interfaces.Behavior;
 import damath.interfaces.CollisionObject;
+import damath.interfaces.Enemy;
 import damath.interfaces.Player;
 import damath.settings.Controller;
 import damath.tools.CollisionBox;
@@ -22,8 +23,11 @@ public class MapBehavior implements Behavior {
 	private ImageView backgroundView;
 	private ImageView mapView;
 	private Character playerChar;
+	private Character enemyChar;
 	private Controller controller;
 	private ArrayList<CollisionBox> collisionBoxList;
+	private ArrayList<Enemy> enemies;
+	
 	
 	private double gravity;
 	
@@ -35,6 +39,7 @@ public class MapBehavior implements Behavior {
 		gravity = map.getGravity();
 		collisionBoxList = map.getCollisionBoxList();
 		controller = Controller.getInstance();
+		enemies = map.getEnemies();
 		
 	}
 	
@@ -44,6 +49,17 @@ public class MapBehavior implements Behavior {
 		if(playerChar.isFalling()) {
 			playerChar.setTranslateY(playerChar.getTranslateY() + gravity/Game.FPS);
 		}
+		
+		if(enemies != null) {
+			for(int i = 0; i <  enemies.size(); i++) {
+				enemyChar = (Character) enemies.get(i);
+				if(enemyChar.isFalling()) {
+					enemyChar.setTranslateY(enemyChar.getTranslateY() + gravity/Game.FPS);
+				}
+			}
+		}
+		
+		
 		
 		
 		
@@ -78,6 +94,11 @@ public class MapBehavior implements Behavior {
 					CollisionBox box = collisionBoxList.get(i);
 					box.setTranslateX(box.getTranslateX() - playerChar.getSpeed()/Game.FPS);
 				}
+				
+				for(int i = 0; i < enemies.size(); i++) {
+					enemyChar = (Character)enemies.get(i);
+					enemyChar.setTranslateX(enemyChar.getTranslateX() - playerChar.getSpeed()/Game.FPS);
+				}
 			}
 			break;
 			
@@ -90,6 +111,11 @@ public class MapBehavior implements Behavior {
 				for(int i = 0; i < collisionBoxList.size(); i++) {
 					CollisionBox box = collisionBoxList.get(i);
 					box.setTranslateX(box.getTranslateX() + playerChar.getSpeed()/Game.FPS);
+				}
+				
+				for(int i = 0; i < enemies.size(); i++) {
+					enemyChar = (Character)enemies.get(i);
+					enemyChar.setTranslateX(enemyChar.getTranslateX() + playerChar.getSpeed()/Game.FPS);
 				}
 			}
 			break;

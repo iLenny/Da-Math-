@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import damath.Game;
 import damath.character.Character;
+import damath.character.KingGoblin;
 import damath.interfaces.CollisionObject;
 import damath.interfaces.Player;
 import damath.tools.CollisionBar;
@@ -20,10 +21,11 @@ public class Town extends Map {
 	private Image mapImg;
 	private Image crateImg;
 	private CollisionBox floor;
+	private KingGoblin [] kGoblins = new KingGoblin[10];
 	
 	public Town(Player player) {
 		super(player);
-		bgImg = new Image(Town.class.getResourceAsStream("../images/background.gif"));
+		bgImg = new Image(Town.class.getResourceAsStream("../images/background2.gif"));
 		mapImg = new Image(Town.class.getResourceAsStream("../images/mapSample.png"));
 		crateImg = new Image(Town.class.getResourceAsStream("../images/cratebox.png"));
 		
@@ -60,6 +62,13 @@ public class Town extends Map {
 		addCollisionObject(box2,653, 449);
 		addCollisionObject(new CollisionBox(crateImg),653, 398);
 		addCollisionObject(new CollisionBox(crateImg),753, 398);
+		
+		for(int i = 0; i < kGoblins.length; i++) {
+			kGoblins[i] = new KingGoblin();
+			int x = new java.util.Random().nextInt((int)mapImg.getWidth());
+			this.addEnemy(kGoblins[i],x ,0);
+		}
+		
 	
 		
 	}
@@ -68,10 +77,15 @@ public class Town extends Map {
 	public void update() {
 		getBehavior().play();
 		((Character)getPlayer()).update();
+		
+		
 		for(int i = 0; i < this.getCollisionBoxList().size(); i++) {
 			CollisionBox box = this.getCollisionBoxList().get(i);
 			box.buildCollisionWith((Character)getPlayer());
+			box.buildEnemyCollision(this.getEnemies());
 		}
+		for(int i = 0; i < getEnemies().size(); i++) 
+		((Character)getEnemies().get(i)).update();
 	}
 
 }

@@ -64,7 +64,7 @@ public abstract class Character extends Pane implements Updatable {
 		setAllowToJump(false);
 		setJumpPower(10);
 		
-		characterView.setFocusTraversable(true);
+		
 		this.getChildren().addAll(characterView, head, body, feet);
 		
 	}

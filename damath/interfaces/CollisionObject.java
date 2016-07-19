@@ -1,4 +1,6 @@
 package damath.interfaces;
+import java.util.ArrayList;
+
 import damath.character.Character;
 
 public interface CollisionObject {
@@ -8,4 +10,5 @@ public interface CollisionObject {
 	public static final int PUSH_UP = 2;
 	public static final int PUSH_DOWN = 3;
 	public void buildCollisionWith(Character player);
+	public void buildEnemyCollision(ArrayList<Enemy> enemies);
 }

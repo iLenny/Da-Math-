@@ -1,7 +1,10 @@
 package damath.tools;
 
+import java.util.ArrayList;
+
 import damath.character.Character;
 import damath.interfaces.CollisionObject;
+import damath.interfaces.Enemy;
 import damath.maps.Map;
 import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
@@ -145,4 +148,48 @@ public class CollisionBox extends Pane implements CollisionObject {
 			
 		}
 	}
+
+	@Override
+	public void buildEnemyCollision(ArrayList<Enemy> enemies) {
+		for(int i = 0; i < enemies.size(); i++) {
+			Bounds playerBody = ((Character)enemies.get(i)).getBodyBounds();
+			Bounds playerHead = ((Character)enemies.get(i)).getHeadBounds();
+			Bounds playerFeet = ((Character)enemies.get(i)).getFeetBounds();
+			Bounds leftBounds = leftBar.localToScene(leftBar.getBoundsInLocal());
+			Bounds rightBounds = rightBar.localToScene(rightBar.getBoundsInLocal());
+			Bounds upBounds = upBar.localToScene(upBar.getBoundsInLocal());
+			Bounds downBounds = downBar.localToScene(downBar.getBoundsInLocal());
+			
+			// PLAYER HITS LEFT BAR
+			if(playerBody.intersects(leftBounds)) {
+				leftBar.buildCollisionWith(((Character)enemies.get(i)));
+			}
+			
+			// PLAYER HITS RIGHT BAR
+			else if(playerBody.intersects(rightBounds)) {
+				rightBar.buildCollisionWith(((Character)enemies.get(i)));
+			}
+			
+			// PLAYER HITS UP BAR
+			if(playerFeet.intersects(upBounds) && ((Character)enemies.get(i)).isFalling()) {
+				upBar.buildCollisionWith(((Character)enemies.get(i)));
+				((Character)enemies.get(i)).setAllowToJump(true);
+				if(Character.once == true) {
+					Character.once = false;
+					((Character)enemies.get(i)).resetPosition();
+				}
+				
+			}
+			
+			// PLAYER HITS DOWN BAR
+			else if(playerHead.intersects(downBounds)){
+				downBar.buildCollisionWith(((Character)enemies.get(i)));
+				
+			}
+		}
+		
+		
+	}
+	
+	
 }

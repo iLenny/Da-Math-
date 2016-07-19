@@ -7,5 +7,5 @@ package damath.interfaces;
  * and with the intention of becoming a enemy character.
  */
 public interface Enemy {
-
+	public void addBehaviour(Behavior behavior);
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import damath.character.Character;
 import damath.interfaces.Behavior;
 import damath.interfaces.CollisionObject;
+import damath.interfaces.Enemy;
 import damath.interfaces.Player;
 import damath.interfaces.Updatable;
 import damath.tools.CollisionBox;
@@ -21,6 +22,7 @@ public abstract class Map extends Pane implements Updatable{
 	private Behavior behavior;
 	private double gravity;
 	private ArrayList<CollisionBox> collisionBoxList;
+	private ArrayList<Enemy> enemies;
 	
 	/* ******************
 	 *   CONSTRUCTORS
@@ -31,6 +33,7 @@ public abstract class Map extends Pane implements Updatable{
 		backgroundView = new ImageView();
 		mapView = new ImageView();
 		collisionBoxList = new ArrayList<>();
+		enemies = new ArrayList<>();
 		
 		this.getChildren().addAll(backgroundView, mapView, (Character)player);
 	}
@@ -65,6 +68,8 @@ public abstract class Map extends Pane implements Updatable{
 		return player;
 	}
 	
+
+	
 	public ImageView getBackgroundView() {
 		return backgroundView;
 	}
@@ -85,6 +90,10 @@ public abstract class Map extends Pane implements Updatable{
 		return collisionBoxList;
 	}
 	
+	public ArrayList<Enemy> getEnemies() {
+		return enemies;
+	}
+	
 	
 	/* ********************
 	 * 	 OTHER METHODS
@@ -93,5 +102,11 @@ public abstract class Map extends Pane implements Updatable{
 		obj.relocate(x, y);
 		collisionBoxList.add(obj);
 		this.getChildren().add(2,obj);
+	}
+	
+	public void addEnemy(Enemy enemy, double x, double y) {
+		((Character)enemy).relocate(x,y);
+		enemies.add(enemy);
+		this.getChildren().add(2,((Character)enemy));
 	}
 }
